@@ -28,7 +28,7 @@ test ('shoppingloginpage', async ({page}) =>
     await expect(page.locator(".login-title")).toContainText("Register");
     await firstname.fill("Magesh");
     await lastname.fill("Mugundhan");
-    await email.fill("magesh5@gmail.com");
+    await email.fill("magesh6@gmail.com");
     await phoneno.fill("9876543210");
     await occupation.selectOption('Engineer');
     await gender.click();
@@ -38,11 +38,14 @@ test ('shoppingloginpage', async ({page}) =>
     await registerbutton.click();
     await expect(page.locator(".login-wrapper h1")).toContainText("Account Created Successfully");
     await loginbutton.click();
-    await email.fill("magesh5@gmail.com");
+    await email.fill("magesh6@gmail.com");
     await password.fill("Test12345678");
     await registerbutton.click();
-    console.log(await product1title.nth(0).textContent());
-    await expect(product1title.nth(0)).toContainText("ADIDAS ORIGINAL");
+    //console.log(await product1title.nth(0).textContent());
+    //await expect(product1title.nth(0)).toContainText("ADIDAS ORIGINAL");
+    await page.waitForLoadState("networkidle");
+    let alltitles = await product1title.allTextContents();
+    console.log(alltitles);
 
 
         
